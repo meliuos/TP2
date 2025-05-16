@@ -1,0 +1,61 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type Skill {
+  id: ID!
+  designation: String!
+}
+
+type Cv {
+  id: ID!
+  name: String!
+  age: Float!
+  job: String!
+  user: User!
+  userId: String!
+  skills: [Skill!]!
+}
+
+type SubscriptionEvent {
+  event: String!
+  cv: Cv!
+}
+
+type Query {
+  cvs: [Cv!]!
+  cv(id: String!): Cv
+}
+
+type Mutation {
+  addCv(input: AddCvInput!): Cv!
+  updateCv(input: UpdateCvInput!): Cv!
+  deleteCv(id: String!): Cv!
+}
+
+input AddCvInput {
+  name: String!
+  age: Int!
+  job: String!
+  userId: ID!
+  skillIds: [ID!]!
+}
+
+input UpdateCvInput {
+  id: ID!
+  name: String
+  age: Int
+  job: String
+  userId: ID
+  skillIds: [ID!]
+}
+
+type Subscription {
+  cvChanges: SubscriptionEvent!
+}
